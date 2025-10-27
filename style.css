@@ -1,0 +1,222 @@
+:root {
+  --primary: #14a84a;
+  --primary-dark: #0b6b22;
+  --outline: #0b0b0b;
+  --bg: #f7fff7;
+  --card: #ffffff;
+  --text: #1b1b1b;
+  --muted: #394b3b;
+  --radius: 12px;
+  --shadow: 0 8px 22px rgba(21,21,21,0.06);
+}
+
+/* Reset */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Navbar */
+.navbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 18px;
+  position: sticky; top: 0; z-index: 100;
+  background: linear-gradient(180deg, rgba(255,255,255,0.7), #ffffff66);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  backdrop-filter: blur(6px);
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.logo { width: 48px; height: 48px; object-fit: contain; border-radius: 8px; border: 2px solid var(--outline); background: white; padding: 4px; }
+.logo-school { width: 44px; height: 44px; }
+
+/* Links */
+.nav-links {
+  list-style: none; display: flex; gap: 12px; margin: 0; padding: 0;
+}
+.nav-links a {
+  text-decoration: none; color: var(--text);
+  padding: 8px 10px; border-radius: 8px; font-weight: 600;
+}
+.nav-links a.active { background: var(--primary); color: #fff; }
+
+/* Tombol menu */
+.menu-toggle {
+  display: none;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 101;
+}
+
+/* Responsive menu */
+@media (max-width: 768px) {
+  .menu-toggle { display: block; }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+  .nav-links.show {
+    display: flex;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: linear-gradient(180deg, var(--primary), var(--primary-dark));
+    flex-direction: column;
+    padding: 12px 0;
+    border-radius: 0 0 10px 10px;
+    z-index: 100;
+    transition: all 0.3s ease-in-out;
+  }
+  .nav-links.show a {
+    color: white;
+    padding: 10px 14px;
+    text-align: center;
+  }
+}
+
+/* Konten */
+.container { max-width: 1100px; margin: 26px auto; padding: 18px; }
+
+/* Dark mode */
+body.dark {
+  background: #08130b;
+  color: #e7f6ea;
+}
+body.dark .navbar { background: rgba(0,0,0,0.36); }
+body.dark .nav-links.show { background: linear-gradient(180deg,#0b6b22,#084f18); }
+
+/* ============================= */
+/* 📸 GALERI RESPONSIVE & RAPI   */
+/* ============================= */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.gallery-item {
+  overflow: hidden;
+  border-radius: 10px;
+  border: 3px solid #e0d5cc;
+  background: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;              /* 🟢 gambar otomatis menyesuaikan proporsinya */
+  display: block;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  object-fit: cover;
+}
+
+/* Efek hover */
+.gallery-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 10px rgba(160, 82, 45, 0.6);
+  border-color: #a0522d;
+}
+
+/* 📱 Responsif untuk HP */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* grid lebih kecil */
+    gap: 10px;
+  }
+
+  .gallery-item img {
+    border-radius: 8px;
+  }
+}
+.gallery-item img {
+  border-radius: 10px;
+  aspect-ratio: 1 / 1; /* bentuk persegi tetap */
+  object-fit: cover;
+}
+/* ============================= */
+/* 👥 STRUKTUR ORGANISASI BORDER */
+/* ============================= */
+
+/* Bingkai keseluruhan area struktur */
+.org-chart {
+  border: 3px solid var(--primary);
+  border-radius: 14px;
+  padding: 20px;
+  margin-top: 20px;
+  background: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Setiap kotak (level dan bidang) lebih tegas */
+.org-chart .box {
+  border: 2px solid var(--primary-dark);
+  box-shadow: 0 4px 10px rgba(15, 138, 46, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Efek hover supaya interaktif */
+.org-chart .box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(15, 138, 46, 0.2);
+}
+
+/* Level garis antar bagian */
+.level {
+  border-top: 1px dashed rgba(15, 138, 46, 0.3);
+  padding-top: 12px;
+  margin-top: 14px;
+}
+.level:first-child {
+  border-top: none;
+}
+@media (max-width: 768px) {
+  .org-chart {
+    padding: 12px;
+    border-width: 2px;
+  }
+  .org-chart .box {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+/* Konsistensi tampilan antar halaman */
+.page-header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  color: var(--outline);
+  margin-bottom: 6px;
+}
+
+.page-header .lead {
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0;
+}
+
+/* Tata letak isi utama */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Semua kartu seragam */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
